@@ -51,13 +51,13 @@ const quotes = [
   'As the final curtain falls, their encore is the legacy of love they leave behind, a standing ovation in our hearts.',
 ];
 
-const petNameBox = document.querySelector("#petContainer");
+
 const pets = ["Steve", "Julieta", "Kerri", "Darius", "Louis", "Mariana", "Kolby", "Kelton", "Abigail", "Daisy", "Kathrine", "Anjali", "Dezmond", "Kari", "Shyann", "Amirah", "Lesli", "Cruz", "Shelby", "Aman", "Ricky", "Citlali", "Paloma", "Maxim", "Eva", "Camryn", "Christa", "Candy", "Noel", "Kenya", "Jefferson", "Seth", "Jalen", "Kaytlyn", "Brennen", "Branson", "Nadia", "Regan", "Jeniffer", "Amy", "Faith", "Jaren", "Richard", "Michael", "Ambria", "Analise", "Colten", "Lola", "Shakira", "Kiersten"];
 
 
 const emojiPets = ["🐘", "🐃", "🦇", "🐕", "🦏", "🦜", "🦃", "🐛", "🐠", "🐳", "🐴", "🐲", "🦉", "🦖", "🦊", "🐋", "🦄", "🐧", "🦤", "🐊", "🦈", "🐔", "🦭", "🐭", "🦥", "🐓", "🐹", "🐨", "🐱", "🦢", "🐕‍🦺", "🦒", "🦨", "🐌", "🦁", "🪲", "🐉", "🦔", "🦝", "🐣", "🐞", "🐼", "🐰", "🐙", "🦆", "🦧", "🐺", "🐆", "🐥", "🐈‍", "🦎", "🐂", "🦚", "🐑", "🐅", "🐵", "🐁", "🦓", "🐐", "🕊️", "🦌", "🕷️", "🦏", "🦙", "🐀", "🦩", "🐯", "🐎", "🐇", "🐪", "🐟", "🐄", "🦡", "🐮", "🐿️", "🦕", "🐷", "🐒", "🐍", "🐦", "🦋", "🦂", "🐗", "🐩", "🦅", "🦫", "🐶", "🦛", "🐖", "🦍", "🦬", "🐢",];
 
-
+const petNameBox = document.querySelector("#petContainer");
 const emojiPack = document.querySelector("#emoji")
 const petQuotes = document.querySelector('#deathQuotes');
 const petCardContainer = document.querySelector('#petCard');
@@ -84,73 +84,57 @@ emojiPack.textContent = randomPetEmoji;
 // Generate random quote when pet dies
 function getRandomQuote() {
        let randomIndex = Math.floor(Math.random() * quotes.length);
-       return quotes[randomIndex];
+       return '"' + quotes[randomIndex] + '"';
      }
 
 // Pet is alive, shows emoji, name, labels, hungerMeter, loveMeter, hides quotes
 function petAlive() {
-       // Show necessary elements
+       // Only show
        meter.style.display = 'block'; 
        feedMe.style.display = 'block';
        loveMe.style.display = 'block';
        
-       // Remove the "died" state class
        petCardContainer.classList.remove('petDiedCard');
-       // Change the background color
-    petCardContainer.style.backgroundColor = 'transparent'; // or any color you prefer
-    
-    // Change the text color
-    petCardContainer.style.color = 'black'; // or any color you prefer
-    
+       petCardContainer.style.backgroundColor = 'transparent';
+       petCardContainer.style.color = 'black';
        
-       // Display only the necessary elements for the alive state
+    
        name.textContent = randomPetName; // Show the pet name
        emojiPack.textContent = randomPetEmoji; // Show the pet emoji
-       petQuotes.textContent = ''; // Hide the quote
-     
-       // Optionally, you can add additional styling or elements for the alive state
+       petQuotes.style.display = 'none'; 
      }
 
 // change petCard to PetDiedCard with only showing emoji, name, and quote, hide labels, hungerMeter, and loveMeter
-function changePetCard() {
-       // Hide elements
-       meter.style.display = 'none';
-       feedMe.style.display = 'none';
-       loveMe.style.display = 'none';
-     
-       // Set the pet card to a "died" state
-       petCardContainer.classList.add('petDiedCard');
-       // Change the background color
-       petCardContainer.style.backgroundColor = 'red'; // or any color you prefer
-    
-       // Change the text color
-       petCardContainer.style.color = 'white'; // or any color you prefer
-    
-       // Display only the necessary elements for the died state
-       name.textContent = randomPetName; // Show the pet name
-       emojiDied.textContent = randomPetEmoji; // Show the pet emoji
-       petQuotes.textContent = getRandomQuote(); // Show a random quote for the death
-     
-       // Optionally, you can add additional styling or elements for the died state
-     }
+let lastRandomQuote;
 
-// Example: Call changePetCard() when the pet dies
-/*if (petDies) {
-       changePetCard();
-     }*/
+function changePetCard() {
+    // Hide elements
+    meter.style.display = 'none';
+    feedMe.style.display = 'none';
+    loveMe.style.display = 'none';
+
+    petCardContainer.classList.add('petDiedCard');
+    petCardContainer.style.backgroundColor = 'red'; 
+    petCardContainer.style.color = 'white';
+    petQuotes.style.display = 'visible';
+
+    name.textContent = randomPetName; // Show the pet name
+    emojiDied.textContent = randomPetEmoji; // Show the pet emoji
+    lastRandomQuote = lastRandomQuote || getRandomQuote();
+    petQuotes.textContent = lastRandomQuote; // Show a random quote for the death
+}
  
  
 // Increase hunger gradually
 let hungerLevel = 0;
 
-// Function to increase hunger
 function increaseHunger() {
 
     hungerLevel += 1;
     hungry.value = hungerLevel;
 
     if (hungerLevel >= 100) {
-        // If 100 the pet dies
+        // If 100% the pet dies
         changePetCard();
     }
 }
@@ -179,7 +163,7 @@ function decreaseLove(){
        love.value = loveLevel;
 
        if (loveLevel > 0) {
-              setTimeout(decreaseLove, 1000); // Change this line
+              setTimeout(decreaseLove, 1000);
        } else {
               // Pet dies when love meter reaches 0%
               changePetCard();
@@ -195,10 +179,67 @@ emojiPack.addEventListener("click", function(){
 decreaseLove();
  
 
-
-/* Cursor turns to heart when clicking emoji to love the pet, from 100%, it gradually decreases, when it reaches 0 the pet dies */
-
 // New Pet appears after 30 seconds as long as alive
+   
+// Create a new pet card
+
+function createPetCard() {
+       // Create a new pet card
+       let newPetCard = document.createElement('div');
+       newPetCard.id = 'petCard';
+   
+       // Create elements for pet name and emoji
+       let petNameElement = document.createElement('div');
+       petNameElement.id = 'petName';
+       let emojiElement = document.createElement('div');
+       emojiElement.id = 'emoji';
+   
+       // Set a new pet name and emoji for the new pet card
+       let randomIndex = Math.floor(Math.random() * pets.length);
+       let randomPetName = pets[randomIndex];
+       petNameElement.textContent = randomPetName;
+   
+       let randomEmojiIndex = Math.floor(Math.random() * emojiPets.length);
+       let randomPetEmoji = emojiPets[randomEmojiIndex];
+       emojiElement.textContent = randomPetEmoji;
+   
+       // Append pet name and emoji to the new pet card
+       newPetCard.appendChild(petNameElement);
+       newPetCard.appendChild(emojiElement);
+   
+       // Create elements for hunger and love meters
+       let hungerMeterElement = document.createElement('div');
+       hungerMeterElement.id = 'hungerMeter';
+       hungerMeterElement.value = 0;
+       let loveMeterElement = document.createElement('div');
+       loveMeterElement.id = 'loveMeter';
+       loveMeterElement.value = 100;
+   
+       // Append hunger and love meters to the new pet card
+       newPetCard.appendChild(hungerMeterElement);
+       newPetCard.appendChild(loveMeterElement);
+   
+       // Add the new pet card after the existing pet cards
+       petContainer.appendChild(newPetCard);
+   }
+   
+   // Check if pet is alive
+   function petAlive(petCard) {
+       let hunger = petCard.querySelector('#hungerMeter').value;
+       let love = petCard.querySelector('#loveMeter').value;
+       return hunger < 100 && love > 0;
+   }
+   
+   setInterval(function() {
+       let petCards = document.querySelectorAll('#petCard');
+       for (let i = 0; i < petCards.length; i++) {
+           if (petAlive(petCards[i])) {
+               createPetCard();
+               break;
+           }
+       }
+   }, 30000);
+   
 
 // feed me button feeds the pet when clicked, hunger starts from 0, gradually increases bar and when reaches 100% then pet dies
 

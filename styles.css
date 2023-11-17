@@ -20,8 +20,9 @@
     #ffffff14 0 1px inset;
 }
 
-#deathQuotes{
-       display: none;
+#deathQuotes::before,
+#deathQuotes::after {
+    content: none;
 }
 
 #feed {
@@ -65,18 +66,10 @@ h3 {
   text-align: center;
 }
 
-/*.petDiedCard {
-  background-color: red;
-  color: #fff;
-}*/
 
 .deadEmoji {
   background-color: #000;
   border-radius: 10px;
   text-wrap: wrap;
   font-size: 16px;
-}
-
-#hungerMeter, #loveMeter {
-       width: 80px;
 }

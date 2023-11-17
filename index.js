@@ -117,6 +117,8 @@ function changePetCard() {
     petCardContainer.style.backgroundColor = 'red'; 
     petCardContainer.style.color = 'white';
     petQuotes.style.display = 'visible';
+    emojiDied.style.backgroundColor = '#000';
+    emojiDied.style.borderRadius = '10px';
 
     name.textContent = randomPetName; // Show the pet name
     emojiDied.textContent = randomPetEmoji; // Show the pet emoji
@@ -183,66 +185,6 @@ decreaseLove();
    
 // Create a new pet card
 
-function createPetCard() {
-       // Create a new pet card
-       let newPetCard = document.createElement('div');
-       newPetCard.id = 'petCard';
-   
-       // Create elements for pet name and emoji
-       let petNameElement = document.createElement('div');
-       petNameElement.id = 'petName';
-       let emojiElement = document.createElement('div');
-       emojiElement.id = 'emoji';
-   
-       // Set a new pet name and emoji for the new pet card
-       let randomIndex = Math.floor(Math.random() * pets.length);
-       let randomPetName = pets[randomIndex];
-       petNameElement.textContent = randomPetName;
-   
-       let randomEmojiIndex = Math.floor(Math.random() * emojiPets.length);
-       let randomPetEmoji = emojiPets[randomEmojiIndex];
-       emojiElement.textContent = randomPetEmoji;
-   
-       // Append pet name and emoji to the new pet card
-       newPetCard.appendChild(petNameElement);
-       newPetCard.appendChild(emojiElement);
-   
-       // Create elements for hunger and love meters
-       let hungerMeterElement = document.createElement('div');
-       hungerMeterElement.id = 'hungerMeter';
-       hungerMeterElement.value = 0;
-       let loveMeterElement = document.createElement('div');
-       loveMeterElement.id = 'loveMeter';
-       loveMeterElement.value = 100;
-   
-       // Append hunger and love meters to the new pet card
-       newPetCard.appendChild(hungerMeterElement);
-       newPetCard.appendChild(loveMeterElement);
-   
-       // Add the new pet card after the existing pet cards
-       petContainer.appendChild(newPetCard);
-   }
-   
-   // Check if pet is alive
-   function petAlive(petCard) {
-       let hunger = petCard.querySelector('#hungerMeter').value;
-       let love = petCard.querySelector('#loveMeter').value;
-       return hunger < 100 && love > 0;
-   }
-   
-   setInterval(function() {
-       let petCards = document.querySelectorAll('#petCard');
-       for (let i = 0; i < petCards.length; i++) {
-           if (petAlive(petCards[i])) {
-               createPetCard();
-               break;
-           }
-       }
-   }, 30000);
-   
 
-// feed me button feeds the pet when clicked, hunger starts from 0, gradually increases bar and when reaches 100% then pet dies
-
-// each pet has a random death note displayed, background color turns red, text is white, emoji background turns black
 
 // pet will still die after # minutes

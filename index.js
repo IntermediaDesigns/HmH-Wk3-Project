@@ -1,14 +1,34 @@
-/* 
-    You can see a picture of a pet and their level of hunger.
-    You are able to "feed" your pet and its hunger goes down.
-    Every second the hunger of your pet increases.
-    If a pet reaches a certain hunger, it dies.
-    Every 30 seconds, if all pets are currently alive, a new pet is generated
-    "Love" meter added and pet can die if not "loved" enough.
-    Styled with CSS.
-*/
+// Create pets
 
+const petNameBox = document.querySelector("#petContainer");
+const pets = ["Steve", "Julieta", "Kerri", "Darius", "Louis", "Mariana", "Kolby", "Kelton", "Abigail", "Daisy", "Kathrine", "Anjali", "Dezmond", "Kari", "Shyann", "Amirah", "Lesli", "Cruz", "Shelby", "Aman", "Ricky", "Citlali", "Paloma", "Maxim", "Eva", "Camryn", "Christa", "Candy", "Noel", "Kenya", "Jefferson", "Seth", "Jalen", "Kaytlyn", "Brennen", "Branson", "Nadia", "Regan", "Jeniffer", "Amy", "Faith", "Jaren", "Richard", "Michael", "Ambria", "Analise", "Colten", "Lola", "Shakira", "Kiersten", "Kiah", "Maureen", "Nehemiah", "Will", "Francisca", "Ellen", "Natalee", "Alexandra", "Parker", "Ivonne", "Eric", "Phoenix", "Jarret", "Daveon", "Andrew", "Dimitri", "Madison", "Anjelica", "Baylee", "Amaris", "Angel", "Madalyn", "Mitchel", "Mckenna", "Sonia", "Averi", "Duncan", "Kadin", "Freddie", "Eddie", "Emilio", "Deanna", "Bridget", "Karsyn", "Jade", "Janie", "Ean", "Liliana", "Aracely", "Michele", "Rosemary", "Lacy", "Dayton", "Annabella", "Julianne", "Dylan", "Tayler", "Jacob", "Keisha", "Keira"];
+
+const emojiPack = document.querySelector("#emoji")
+const emojiPets = ["🐘", "🐃", "🦇", "🐕", "🦏", "🦜", "🦃", "🐛", "🐠", "🐳", "🐴", "🐲", "🦉", "🦖", "🦊", "🐋", "🦄", "🐧", "🦤", "🐊", "🦈", "🐔", "🦭", "🐭", "🦥", "🐓", "🐜", "🐹", "🪱", "🐨", "🐱", "🦗", "🦟", "🦢", "🐕‍🦺", "🦒", "🦨", "🐌", "🦁", "🪲", "🐉", "🦔", "🦝", "🐣", "🐞", "🐼", "🐰", "🐙", "🦆", "🦧", "🐺", "🐆", "🐥", "🦣", "🐈‍", "🦎", "🐂", "🦚", "🐑", "🐅", "🐵", "🐁", "🦓", "🐐", "🕊️", "🦌", "🕷️", "🦏", "🦙", "🐀", "🦩", "🐯", "🐎", "🐇", "🐪", "🐟", "🐄", "🦡", "🐫", "🐮", "🐿️", "🦕", "🐷", "🐒", "🐍", "🐦", "🦋", "🦂", "🐗", "🐩", "🦅", "🪳", "🦫", "🦮", "🐶", "🦛", "🐖", "🦍", "🦬", "🐢",];
+
+const petCardContainer = document.querySelector("#petCard");
+const name = document.querySelector("#petName");
+const meter = document.querySelector("#meterContainer");
+const feedMe = document.querySelector("#hungerBox");
+const hungry = document.querySelector("#hungerMeter");
+const loveMe = document.querySelector("#loveBox");
+const love = document.querySelector("#loveMeter");
+const feedButton = document.querySelector("#feed");
+
+// Generates random pet name
+let randomIndex = Math.floor(Math.random() * pets.length);
+let randomPetName = pets[randomIndex];
+name.textContent = randomPetName;
+
+// Generate random emoji
+let randomEmojiIndex = Math.floor(Math.random() * emojiPets.length);
+let randomPetEmoji = emojiPets[randomEmojiIndex];
+emojiPack.textContent = randomPetEmoji;
+
+
+  
 /* Cursor turns to heart when clicking emoji to love the pet, from 100%, it gradually decreases, when it reaches 0 the pet dies */
+
 
 // New Pet appears after 30 seconds as long as alive
 
@@ -17,68 +37,3 @@
 // each pet has a random death note displayed, background color turns red, text is white, emoji background turns black
 
 // pet will still die after # minutes 
-
-// Create pets
-
-const petBox = document.querySelector("#petContainer");
-const pets = [
-  {
-    id: 1,
-    name: "Winston",
-    hunger: 0,
-    love: "100%",
-    emoji: "🦓",
-  },
-  {
-    id: 2,
-    name: "It",
-    hunger: 0,
-    love: "100%",
-    emoji: "🤡",
-  },
-  {
-    id: 3,
-    name: "Godzilla",
-    hunger: 0,
-    love: "100%",
-    emoji: "🦎",
-  },
-];
-
-
-
-function render() {
-  petBox.replaceChildren();
-
-  for (let pet of pets) {
-    const div = document.createElement("div");
-    div.className = "petCard";
-
-    const name = document.createElement("p");
-    name.textContent = pet.name;
-    div.appendChild(name);
-
-    const emoji = document.createElement("p");
-    emoji.textContent = pet.emoji;
-    div.appendChild(emoji);
-
-    const hunger = document.createElement("p");
-    hunger.textContent = "Hunger: " + pet.hunger;
-    div.appendChild(hunger);
-
-    const love = document.createElement("p");
-    love.textContent = "Love: " + pet.love;
-    div.appendChild(love);
-
-    const button = document.createElement("button");
-    button.textContent = "Feed me 🍞";
-
-    button.addEventListener("click", function(){
-      pet.hunger = pet.hunger + 1;
-
-      render();
-    });
-    div.appendChild(button);
-    petBox.appendChild(div);
-  }
-}

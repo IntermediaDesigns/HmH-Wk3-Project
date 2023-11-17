@@ -1,71 +1,91 @@
 .petContainer {
-       display: flex;
-       flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
-     }
-     
-#petCard {
-       display: flex;
-       flex-direction: column;
-       align-items: center;
-       justify-content: center;
-       width: 150px;
-       height: 240px;
-       padding: 10px;
-       border: 1px solid rgb(76, 76, 76);
-       box-shadow: #06182c66 0 0 0 2px,#06182ca6 0 4px 6px -1px,#ffffff14 0 1px inset
 }
 
-#feed {       
-     margin-top: auto;
-     border: 1px solid #8f8f9d;
-     border-radius: 4px;
-     padding: 1px 4px;
+#petCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 240px;
+  padding: 10px;
+  border: 1px solid rgb(76, 76, 76);
+  box-shadow: #06182c66 0 0 0 2px, #06182ca6 0 4px 6px -1px,
+    #ffffff14 0 1px inset;
+}
+
+#deathQuotes{
+       display: none;
+}
+
+#feed {
+  margin-top: auto;
+  border: 1px solid #8f8f9d;
+  border-radius: 4px;
+  padding: 1px 4px;
 }
 
 h3 {
-       text-align: center;       
+  text-align: center;
 }
 
 #meterContainer {
-       display: flex;
-       flex-direction: column;
-       justify-content: center;
-       align-items: center;
-       gap: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
-#hungerBox, #loveBox {
-       display: flex;
-       flex-direction: column;
-       justify-content: center;
-       align-items: center;
+#hungerBox,
+#loveBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
-
 
 #emoji {
-       font-size: 50px;
-       border: none;
-       background-color: transparent;
-       
-       cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>💚</text></svg>") 16 0,auto
+  font-size: 50px;
+  border: none;
+  background-color: transparent;
+
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>💚</text></svg>")
+      16 0,
+    auto;
 }
 
-
 #name {
-       text-align: center;
+  text-align: center;
 }
 
 .petdied {
-       background-color:red;
-       color:#fff
+  background-color: red;
+  color: #fff;
 }
 
-.dead-emoji {
-       background-color:#000;
-       border-radius:10px
+.deadEmoji {
+  background-color: #000;
+  border-radius: 10px;
+  text-wrap: wrap;
+  font-size: 16px;
+}
+
+.hungerMeter {
+       -webkit-meter-bar {
+              background: none;
+              background-color: lightgrey;
+              box-shadow: 0 3px 3px -3px #333 inset;;
+       }
+              -webkit-meter-optimum-value {
+                     box-shadow: 0 3px 3px -3px #999 inset;
+                     background-image: linear-gradient( 90deg, #2286c9 5%, #FF00FF 5%, #FF00FF 15%, #04C319 15%, #04C319 55%, #F1F70D 55%, #F1F70D 95%, #00FFCC 95%, #00FFCC 100%);
+                     background-size: 100% 100%;
+       }
 }

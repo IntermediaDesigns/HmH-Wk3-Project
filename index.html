@@ -20,7 +20,7 @@
 
     <!--Pet-->
     <div class="petContainer">
-      <div id="petCard" class="petDied">
+      <div id="petCard" class="petDiedCard">
         <div id="emoji" class="deadEmoji">🦒</div>
 
         <h3 id="petName">Name</h3>
@@ -29,12 +29,12 @@
           <div id="hungerBox">
             <label for="hungerMeter">Hunger:</label>
 
-            <meter class="hungerMeter" min="0" max="100" value="0"></meter>
+            <meter id="hungerMeter" min="0" max="100" value="0"></meter>
           </div>
 
           <div id="loveBox">
             <label for="loveMeter">Love:</label>
-            <meter class="loveMeter" min="0" max="100" value="100"></meter>
+            <meter id="loveMeter" min="0" max="100" value="100"></meter>
           </div>
 
           <button id="feed">Feed me 🍞</button>

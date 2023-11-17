@@ -65,10 +65,10 @@ h3 {
   text-align: center;
 }
 
-.petdied {
+/*.petDiedCard {
   background-color: red;
   color: #fff;
-}
+}*/
 
 .deadEmoji {
   background-color: #000;
@@ -77,15 +77,6 @@ h3 {
   font-size: 16px;
 }
 
-.hungerMeter {
-       -webkit-meter-bar {
-              background: none;
-              background-color: lightgrey;
-              box-shadow: 0 3px 3px -3px #333 inset;;
-       }
-              -webkit-meter-optimum-value {
-                     box-shadow: 0 3px 3px -3px #999 inset;
-                     background-image: linear-gradient( 90deg, #2286c9 5%, #FF00FF 5%, #FF00FF 15%, #04C319 15%, #04C319 55%, #F1F70D 55%, #F1F70D 95%, #00FFCC 95%, #00FFCC 100%);
-                     background-size: 100% 100%;
-       }
+#hungerMeter, #loveMeter {
+       width: 80px;
 }

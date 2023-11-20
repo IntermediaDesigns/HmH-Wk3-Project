@@ -51,9 +51,7 @@ const quotes = [
   'As the final curtain falls, their encore is the legacy of love they leave behind, a standing ovation in our hearts.',
 ];
 
-
 const pets = ["Steve", "Julieta", "Kerri", "Darius", "Louis", "Mariana", "Kolby", "Kelton", "Abigail", "Daisy", "Kathrine", "Anjali", "Dezmond", "Kari", "Shyann", "Amirah", "Lesli", "Cruz", "Shelby", "Aman", "Ricky", "Citlali", "Paloma", "Maxim", "Eva", "Camryn", "Christa", "Candy", "Noel", "Kenya", "Jefferson", "Seth", "Jalen", "Kaytlyn", "Brennen", "Branson", "Nadia", "Regan", "Jeniffer", "Amy", "Faith", "Jaren", "Richard", "Michael", "Ambria", "Analise", "Colten", "Lola", "Shakira", "Kiersten"];
-
 
 const emojiPets = ["🐘", "🐃", "🦇", "🐕", "🦏", "🦜", "🦃", "🐛", "🐠", "🐳", "🐴", "🐲", "🦉", "🦖", "🦊", "🐋", "🦄", "🐧", "🦤", "🐊", "🦈", "🐔", "🦭", "🐭", "🦥", "🐓", "🐹", "🐨", "🐱", "🦢", "🐕‍🦺", "🦒", "🦨", "🐌", "🦁", "🪲", "🐉", "🦔", "🦝", "🐣", "🐞", "🐼", "🐰", "🐙", "🦆", "🦧", "🐺", "🐆", "🐥", "🐈‍", "🦎", "🐂", "🦚", "🐑", "🐅", "🐵", "🐁", "🦓", "🐐", "🕊️", "🦌", "🕷️", "🦏", "🦙", "🐀", "🦩", "🐯", "🐎", "🐇", "🐪", "🐟", "🐄", "🦡", "🐮", "🐿️", "🦕", "🐷", "🐒", "🐍", "🐦", "🦋", "🦂", "🐗", "🐩", "🦅", "🦫", "🐶", "🦛", "🐖", "🦍", "🦬", "🐢",];
 
@@ -96,8 +94,7 @@ function petAlive() {
        
        petCardContainer.classList.remove('petDiedCard');
        petCardContainer.style.backgroundColor = 'transparent';
-       petCardContainer.style.color = 'black';
-       
+       petCardContainer.style.color = 'black';     
     
        name.textContent = randomPetName; // Show the pet name
        emojiPack.textContent = randomPetEmoji; // Show the pet emoji
@@ -125,7 +122,6 @@ function changePetCard() {
     lastRandomQuote = lastRandomQuote || getRandomQuote();
     petQuotes.textContent = lastRandomQuote; // Show a random quote for the death
 }
- 
  
 // Increase hunger gradually
 let hungerLevel = 0;
@@ -155,8 +151,6 @@ feedButton.addEventListener('click', function() {
 
        hungry.value = hungerLevel;
    });
-   
-
      
 // Decrease love meter gradually
 let loveLevel = 100;
@@ -181,10 +175,8 @@ emojiPack.addEventListener("click", function(){
 })
 
 decreaseLove();
- 
 
 // New Pet appears after 30 seconds as long as alive
-
 
 // Function to create a new pet card
 function createPetCard() {

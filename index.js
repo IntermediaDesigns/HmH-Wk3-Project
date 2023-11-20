@@ -182,9 +182,94 @@ decreaseLove();
  
 
 // New Pet appears after 30 seconds as long as alive
+
+
+// Function to create a new pet card
+function createPetCard() {
+       // Check if the previous pet is still alive
+       if (hungerLevel < 100 && loveLevel > 0) {
+           // Create a new pet card
+           let newPetCard = document.querySelector('#petCard').cloneNode(true);
    
-// Create a new pet card
+           // Generate a new pet name and emoji for the new pet card
+           let randomIndex = Math.floor(Math.random() * pets.length);
+           let newPetName = pets[randomIndex];
+           let randomEmojiIndex = Math.floor(Math.random() * emojiPets.length);
+           let newPetEmoji = emojiPets[randomEmojiIndex];
+   
+           // Update the new pet card with the new pet name and emoji
+           newPetCard.querySelector('#petName').textContent = newPetName;
+           newPetCard.querySelector('#emoji').textContent = newPetEmoji;
+   
+           // Append the new pet card to the pet container
+           document.querySelector('.petContainer').appendChild(newPetCard);
+   
+           // Set up the event listeners and other functionalities for the new pet card
+           let newFeedButton = newPetCard.querySelector('#feed');
+           let newEmojiPack = newPetCard.querySelector('#emoji');
+           let newHungry = newPetCard.querySelector('#hungerMeter');
+           let newLove = newPetCard.querySelector('#loveMeter');
+   
+           let newHungerLevel = 0;
+           let newLoveLevel = 100;
+   
+           newFeedButton.addEventListener('click', function() {
+               newHungerLevel -= 100;
+               if (newHungerLevel < 0) {
+                   newHungerLevel = 0;
+               }
+               newHungry.value = newHungerLevel;
+           });
+   
+           newEmojiPack.addEventListener('click', function() {
+               newLoveLevel = 100;
+               newLove.value = newLoveLevel;
+           });
+   
+           function increaseNewHunger() {
+               newHungerLevel += 1;
+               newHungry.value = newHungerLevel;
+               if (newHungerLevel >= 100) {
+                   changeNewPetCard(newPetCard, newPetName, newPetEmoji);
+               }
+           }
+   
+           function decreaseNewLove() {
+               newLoveLevel -= 1;
+               newLove.value = newLoveLevel;
+               if (newLoveLevel <= 0) {
+                   changeNewPetCard(newPetCard, newPetName, newPetEmoji);
+               }
+           }
+   
+           setInterval(increaseNewHunger, 1000);
+           setInterval(decreaseNewLove, 1000);
+       }
+   }
+   
+   // Function to change the pet card when the pet dies
+   function changeNewPetCard(petCard, petName, petEmoji) {
+       // Hide elements
+       petCard.querySelector('#meterContainer').style.display = 'none';
+       petCard.querySelector('#hungerBox').style.display = 'none';
+       petCard.querySelector('#loveBox').style.display = 'none';
+   
+       petCard.classList.add('petDiedCard');
+       petCard.style.backgroundColor = 'red'; 
+       petCard.style.color = 'white';
+       petCard.querySelector('#deathQuotes').style.display = 'visible';
+       petCard.querySelector('.deadEmoji').style.backgroundColor = '#000';
+       petCard.querySelector('.deadEmoji').style.borderRadius = '10px';
+   
+       petCard.querySelector('#petName').textContent = petName; // Show the pet name
+       petCard.querySelector('.deadEmoji').textContent = petEmoji; // Show the pet emoji
 
-
-
-// pet will still die after # minutes
+       // Generate a random quote for the death
+    let newRandomQuote = getRandomQuote();
+    petCard.querySelector('#deathQuotes').textContent = newRandomQuote; // Show the random quote
+    
+   }
+   
+   // Create a new pet card every 30 seconds
+   setInterval(createPetCard, 30000);
+   

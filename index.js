@@ -83,8 +83,8 @@ emojiPack.textContent = randomPetEmoji;
 
 // Generate random quote when pet dies
 function getRandomQuote() {
-       let randomIndex = Math.floor(Math.random() * quotes.length);
-       return '"' + quotes[randomIndex] + '"';
+       let randomQuoteIndex = Math.floor(Math.random() * quotes.length);
+       return '"' + quotes[randomQuoteIndex] + '"';
      }
 
 // Pet is alive, shows emoji, name, labels, hungerMeter, loveMeter, hides quotes
@@ -138,10 +138,11 @@ function increaseHunger() {
     if (hungerLevel >= 100) {
         // If 100% the pet dies
         changePetCard();
+        clearInterval(timeInterval);
     }
 }
 
-setInterval(increaseHunger, 1000);
+let timeInterval = setInterval(increaseHunger, 1000);
 
 // clicking the feed me button will decrease back to 0%
 feedButton.addEventListener('click', function() {
@@ -170,6 +171,7 @@ function decreaseLove(){
               // Pet dies when love meter reaches 0%
               changePetCard();
           }
+        
 }
 
 // clicking emoji will fill bar to 100%
@@ -231,6 +233,7 @@ function createPetCard() {
                newHungry.value = newHungerLevel;
                if (newHungerLevel >= 100) {
                    changeNewPetCard(newPetCard, newPetName, newPetEmoji);
+                   clearInterval(timerInterval1);
                }
            }
    
@@ -239,11 +242,12 @@ function createPetCard() {
                newLove.value = newLoveLevel;
                if (newLoveLevel <= 0) {
                    changeNewPetCard(newPetCard, newPetName, newPetEmoji);
+                   clearInterval(timerInterval2);
                }
            }
    
-           setInterval(increaseNewHunger, 1000);
-           setInterval(decreaseNewLove, 1000);
+           let timerInterval1 = setInterval(increaseNewHunger, 1000);
+           let timerInterval2 = setInterval(decreaseNewLove, 1000);
        }
    }
    
